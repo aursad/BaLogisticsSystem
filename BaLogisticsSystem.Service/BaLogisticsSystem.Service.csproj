@@ -47,13 +47,13 @@
     <Compile Include="User\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaLogisticsSystem.Model\BaLogisticsSystem.Model.csproj">
+      <Project>{FABDA2B3-BF6B-4A98-94C4-D339E131D2B6}</Project>
+      <Name>BaLogisticsSystem.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BaLogisticsSystem.Repository\BaLogisticsSystem.Repository.csproj">
       <Project>{C974A4F6-D82B-4E63-8795-70AD6B394909}</Project>
       <Name>BaLogisticsSystem.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\BaLogisticsSystem.Model.csproj">
-      <Project>{FABDA2B3-BF6B-4A98-94C4-D339E131D2B6}</Project>
-      <Name>BaLogisticsSystem.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

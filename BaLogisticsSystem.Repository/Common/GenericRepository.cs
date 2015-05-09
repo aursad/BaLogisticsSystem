@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Models.Common;
+using BaLogisticsSystem.Models.Common;
 
 namespace BaLogisticsSystem.Repository.Common
 {

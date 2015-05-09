@@ -7,9 +7,7 @@ using System.Web.Security;
 using BaLogisticsSystem.DAL;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Service.User;
-using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-using Models;
 using WebMatrix.WebData;
 
 namespace BaLogisticsSystem.Controllers

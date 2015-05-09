@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Models.Common;
+using BaLogisticsSystem.Models.Common;
 
 namespace BaLogisticsSystem.Service.Common
 {

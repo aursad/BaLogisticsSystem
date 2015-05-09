@@ -1,8 +1,7 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
+using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository.Common;
-using Models;
 
 namespace BaLogisticsSystem.Repository
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Models.Common;
+using BaLogisticsSystem.Models.Common;
 
 namespace BaLogisticsSystem.Repository.Common
 {

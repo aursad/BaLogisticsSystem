@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using BaLogisticsSystem.Models.Common;
 using BaLogisticsSystem.Repository.Common;
-using Models.Common;
 
 namespace BaLogisticsSystem.Service.Common
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Reflection;
 using System.Threading;
 using System.Web;
@@ -9,7 +8,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
-using BaLogisticsSystem.DAL;
 using BaLogisticsSystem.Modules;
 using WebMatrix.WebData;
 

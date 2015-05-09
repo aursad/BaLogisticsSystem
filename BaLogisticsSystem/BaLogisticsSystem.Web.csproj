@@ -283,19 +283,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -316,11 +303,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaLogisticsSystem.Model\BaLogisticsSystem.Model.csproj">
+      <Project>{fabda2b3-bf6b-4a98-94c4-d339e131d2b6}</Project>
+      <Name>BaLogisticsSystem.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BaLogisticsSystem.Repository\BaLogisticsSystem.Repository.csproj">
       <Project>{C974A4F6-D82B-4E63-8795-70AD6B394909}</Project>
       <Name>BaLogisticsSystem.Repository</Name>
@@ -328,10 +320,6 @@
     <ProjectReference Include="..\BaLogisticsSystem.Service\BaLogisticsSystem.Service.csproj">
       <Project>{9eb4b9d6-9d40-44c0-943c-7a4a1fb96b28}</Project>
       <Name>BaLogisticsSystem.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\BaLogisticsSystem.Model.csproj">
-      <Project>{FABDA2B3-BF6B-4A98-94C4-D339E131D2B6}</Project>
-      <Name>BaLogisticsSystem.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

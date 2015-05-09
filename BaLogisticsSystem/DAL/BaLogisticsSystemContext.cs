@@ -5,7 +5,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 using BaLogisticsSystem.Infrastructure;
-using Models;
+using BaLogisticsSystem.Models;
 
 namespace BaLogisticsSystem.DAL
 {

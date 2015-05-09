@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using Models;
+using BaLogisticsSystem.Models;
 
 namespace BaLogisticsSystem.DAL
 {

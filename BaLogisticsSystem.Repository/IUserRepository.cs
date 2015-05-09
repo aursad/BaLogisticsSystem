@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository.Common;
-using Models;
 
 namespace BaLogisticsSystem.Repository
 {
