@@ -1,0 +1,24 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@User.Identity.Name <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="@Url.Action("Manage", "Account")" class="navbar-link">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Nustatymai
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="@Url.Action("LogOff", "Account")" class="navbar-link">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Atsijungti
+                </a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}
