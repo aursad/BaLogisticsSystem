@@ -3,8 +3,6 @@
 @if (Model.Count == 0)
 {
     <div class="message-info">
-        <p>There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=252166">this article</a>
-        for details on setting up this ASP.NET application to support logging in via external services.</p>
     </div>
 }
 else
@@ -13,7 +11,7 @@ else
     {
     @Html.AntiForgeryToken()
     <fieldset id="socialLoginList">
-        <legend>Log in using another service</legend>
+        <legend>Prisijungti kitais būdais</legend>
         <p>
         @foreach (AuthenticationClientData p in Model)
         {

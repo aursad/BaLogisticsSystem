@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>NFC Logistika : @ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     @Styles.Render("~/Content/css")
@@ -25,20 +25,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Logistics system", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("NFC Logistika", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (!Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Pagrindinis", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Apie", "About", "Home")</li>
+                        <li>@Html.ActionLink("Kontaktai", "Contact", "Home")</li>
                     }
                     else
                     {
                         <li><a href="#">Sąskaitos</a></li>
-                        <li><a href="#">Nuoroda 2</a></li>
+                        <li><a href="#">Siuntos</a></li>
+                        <li>@Html.ActionLink("Vartotojai", "Index", "Vartotojai")</li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

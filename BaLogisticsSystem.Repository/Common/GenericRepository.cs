@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using BaLogisticsSystem.Models.Common;
 
 namespace BaLogisticsSystem.Repository.Common
@@ -9,8 +10,8 @@ namespace BaLogisticsSystem.Repository.Common
     public abstract class GenericRepository<T> : IGenericRepository<T>
          where T : BaseEntity
     {
-        protected readonly DbContext Entities;
-        protected readonly IDbSet<T> Dbset;
+        public DbContext Entities;
+        public IDbSet<T> Dbset;
 
         protected GenericRepository(DbContext context)
         {
@@ -23,7 +24,7 @@ namespace BaLogisticsSystem.Repository.Common
             return Dbset.AsEnumerable();
         }
 
-        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
             var query = Dbset.Where(predicate).AsEnumerable();
             return query;
@@ -41,7 +42,7 @@ namespace BaLogisticsSystem.Repository.Common
 
         public virtual void Edit(T entity)
         {
-            Entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            Entities.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual void Save()

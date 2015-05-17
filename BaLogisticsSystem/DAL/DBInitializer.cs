@@ -5,7 +5,7 @@ using BaLogisticsSystem.Models;
 
 namespace BaLogisticsSystem.DAL
 {
-    public class DbInitializer: DropCreateDatabaseAlways<BaLogisticsSystemContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<BaLogisticsSystemContext>
     {
         protected override void Seed(BaLogisticsSystemContext context)
         {
@@ -28,11 +28,25 @@ namespace BaLogisticsSystem.DAL
                     UserName = "admin", 
                     Email = "aurimas.sadauskas@gmail.com", 
                     Name = "Aurimas", 
-                    Surname = "Sadauskas",
+                    LastName = "Sadauskas",
                     Birthday = new DateTime(1992,01,22),
                     Address = "Vilnius",
                     CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now
+                    UpdatedDate = DateTime.Now,
+                    IdOrganization = Guid.NewGuid()
+                },
+                new PersonEntity { 
+                    Id = 2, 
+                    IdPerson = Guid.NewGuid(),
+                    UserName = "test.user", 
+                    Email = "test.user@test.com", 
+                    Name = "Test", 
+                    LastName = "User",
+                    Birthday = new DateTime(2015,05,22),
+                    Address = "Vilnius",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now,
+                    IdOrganization = Guid.NewGuid()
                 }
             };
 
