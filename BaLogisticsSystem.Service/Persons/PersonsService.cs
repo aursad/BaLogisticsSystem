@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository;
 using BaLogisticsSystem.Repository.Common;
+using BaLogisticsSystem.Repository.Person;
 using BaLogisticsSystem.Service.Common;
 
 namespace BaLogisticsSystem.Service.Persons
@@ -61,6 +62,12 @@ namespace BaLogisticsSystem.Service.Persons
             _personsRepository.Update(entity);
             _personsRepository.Save();
             return entity.IsBlocked;
+        }
+
+
+        public IEnumerable<PersonEntity> PersonsInOrganization(Guid idOrganization)
+        {
+            return _personsRepository.PersonsInOrganization(idOrganization);
         }
     }
 }

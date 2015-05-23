@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrganizationEntity.cs" />
     <Compile Include="PersonEntity.cs" />
+    <Compile Include="ServiceEntity.cs" />
+    <Compile Include="ServiceItemEntity.cs" />
     <Compile Include="UserProfileEntity.cs" />
     <Compile Include="Common\AuditableEntity.cs" />
     <Compile Include="Common\Entity.cs" />

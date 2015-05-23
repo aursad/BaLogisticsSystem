@@ -1,0 +1,110 @@
+﻿@model BaLogisticsSystem.Models.OrganizationFullViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1>Informacija apie <small>@Model.Name</small></h1>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="btn-group-vertical pull-right">
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Redaguoti informaciją</button>
+        </div>
+    </div>
+</div>
+@if (!Model.IsActive)
+{
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+        <span class="sr-only">Neaktyvi!</span>
+        <b>Organizacija nėra aktyvuota!</b>
+    </div>
+}
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+    <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+    <dd>@Html.DisplayFor(model => model.Address)</dd>
+
+    <dt>@Html.DisplayNameFor(model => model.OrganizationType)</dt>
+    <dd>@Html.DisplayFor(model => model.OrganizationType)</dd>
+</dl>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <h1>Organizacijas naudotojai</h1>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Vardas</th>
+                        <th>Pavardė</th>
+                        <th>El. paštas</th>
+                        <th>Veiksmai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Persons)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td width="10%">
+                                @Html.ActionLink("Peržiūrėti", "Details", "Vartotojai", new { id = item.IdPerson }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1>Paslaugos</h1>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Paslaugos pavadinimas</th>
+                        <th>Laikas</th>
+                        <th>Veiksmai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Services)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                            <td width="10%">
+                                @Html.ActionLink("Peržiūrėti", "Details", "Services", new { id = item.IdService }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

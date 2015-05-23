@@ -1,6 +1,7 @@
 ﻿using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository;
 using BaLogisticsSystem.Repository.Common;
+using BaLogisticsSystem.Repository.User;
 using BaLogisticsSystem.Service.Common;
 
 namespace BaLogisticsSystem.Service.User

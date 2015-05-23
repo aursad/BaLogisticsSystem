@@ -1,4 +1,4 @@
-﻿@model BaLogisticsSystem.Models.PersonEntity
+﻿@model BaLogisticsSystem.Models.PersonViewModel
 
 @{
     ViewBag.Title = Model.UserName;
@@ -50,44 +50,8 @@
     <dt>@Html.DisplayNameFor(model => model.MobilePhone)</dt>
     <dd>@Html.DisplayFor(model => model.MobilePhone)</dd>
 
-    <dt>@Html.DisplayNameFor(model => model.IdOrganization)</dt>
-    <dd>@Html.DisplayFor(model => model.IdOrganization)</dd>
+    <dt>@Html.DisplayNameFor(model => model.Organization)</dt>
+    <dd>
+        @Html.ActionLink(Model.Organization.Name, "Details", "Organization", new { id = Model.Organization.IdOrganization }, null)
+    </dd>
 </dl>
-<br />
-<h1>Transakcijų vykdymo istorija</h1>
-<div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Vartotojo vardas</th>
-                <th>E. paštas</th>
-                <th>Vardas</th>
-                <th>Pavardė</th>
-                <th>Veiksmai</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    ą
-                </td>
-                <td>
-                    fsdf
-                </td>
-                <td>
-                    er
-                </td>
-                <td>
-                    er
-                </td>
-                <td>
-                    as
-                </td>
-                <td width="10%">
-                    bb
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>

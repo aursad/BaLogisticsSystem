@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BaLogisticsSystem.Models.OrganizationViewModel>
+
+@{
+    ViewBag.Title = "Organizacijos";
+}
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-md-2" style="margin-top: 22px;">
+        <a href="@Url.Action("Create")" type="button" class="btn btn-primary pull-right">Pridėti organizaciją</a>
+    </div>
+</div>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Organizacijos pavadinimas</th>
+                <th>Adresas</th>
+                <th>Organizacijos tipas</th>
+                <th>Veiksmai</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrganizationType)
+                    </td>
+                    <td width="10%">
+                        @Html.ActionLink("Peržiūrėti", "Details", new { id = item.IdOrganization })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

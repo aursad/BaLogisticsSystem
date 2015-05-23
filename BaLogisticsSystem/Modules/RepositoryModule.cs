@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
 using Autofac;
+using Module = Autofac.Module;
 
 namespace BaLogisticsSystem.Modules
 {
-    public class RepositoryModule : Autofac.Module
+    public class RepositoryModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

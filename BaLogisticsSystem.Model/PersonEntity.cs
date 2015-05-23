@@ -9,7 +9,6 @@ namespace BaLogisticsSystem.Models
     public class PersonEntity : AuditableEntity<int>
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IdPerson{ get; set; }
         [Display(Name = "Vartotojo vardas")]
         public string UserName { get; set; }
@@ -29,5 +28,6 @@ namespace BaLogisticsSystem.Models
         public Guid IdOrganization { get; set; }
 
         public bool IsBlocked { get; set; }
+        public int SecurityLevel { get; set; }
     }
 }

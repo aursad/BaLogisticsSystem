@@ -1,0 +1,59 @@
+﻿@model BaLogisticsSystem.Models.ServiceViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1>
+                Informacija apie <small>@Model.Title</small>
+            </h1>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="btn-group-vertical pull-right">
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Redaguoti informaciją</button>
+        </div>
+    </div>
+</div>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+    <dd>@Html.DisplayFor(model => model.Title)</dd>
+    @if (Model.Organization != null)
+    {
+        <dt>Organizacija</dt>
+        <dd>@Html.DisplayFor(model => model.Organization.Name)</dd>
+    }
+</dl>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <h1>Siuntos</h1>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Siuntos numeris</th>
+                        <th>Pavadinimas</th>
+                        <th>Būsena</th>
+                        <th>Veiksmai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td width="10%">
+                            @*@Html.ActionLink("Peržiūrėti", "Details", "Vartotojai", new { id = item.IdPerson }, null)*@
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

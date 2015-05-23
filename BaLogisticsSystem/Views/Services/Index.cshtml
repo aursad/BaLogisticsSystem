@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BaLogisticsSystem.Models.ServiceViewModel>
+
+@{
+    ViewBag.Title = "Paslaugos";
+}
+
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-md-2" style="margin-top: 22px;">
+        <a href="@Url.Action("Create")" type="button" class="btn btn-primary pull-right">Pridėti paslaugą</a>
+    </div>
+</div>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Paslaugos pavadinimas</th>
+                <th>Organizacija</th>
+                <th>Veiksmai</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @if (item.Organization != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Organization.Name)
+                        }
+                    </td>
+                    <td width="10%">
+                        @Html.ActionLink("Peržiūrėti", "Details", new { id = item.IdService })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

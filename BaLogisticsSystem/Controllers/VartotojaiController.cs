@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Http;
 using System.Web.Mvc;
 using BaLogisticsSystem.Models;
+using BaLogisticsSystem.Service.Organizations;
 using BaLogisticsSystem.Service.Persons;
 
 namespace BaLogisticsSystem.Controllers
@@ -11,10 +12,12 @@ namespace BaLogisticsSystem.Controllers
     public class VartotojaiController : Controller
     {
         private readonly IPersonsService _personsService;
+        private readonly IOrganizationService _organizationService;
 
-        public VartotojaiController(IPersonsService personsService)
+        public VartotojaiController(IPersonsService personsService, IOrganizationService organizationService)
         {
             _personsService = personsService;
+            _organizationService = organizationService;
         }
         // GET: Vartotojai
         public ActionResult Index()
@@ -38,7 +41,30 @@ namespace BaLogisticsSystem.Controllers
                 return HttpNotFound();
             }
 
-            return View(personModel);
+            var personViewModel = new PersonViewModel
+            {
+                IdPerson = personModel.IdPerson,
+                Name = personModel.Name,
+                Address = personModel.Address,
+                Birthday = personModel.Birthday,
+                Email = personModel.Email,
+                LastName = personModel.LastName,
+                MobilePhone = personModel.LastName,
+                UserName = personModel.UserName,
+                IsBlocked = personModel.IsBlocked
+            };
+            var organizationEntity = _organizationService.GetSingle(personModel.IdOrganization);
+            if (organizationEntity != null)
+            {
+                personViewModel.Organization = new OrganizationViewModel
+                {
+                    Name = organizationEntity.Name,
+                    IdOrganization = organizationEntity.IdOrganization
+                };
+            }
+
+
+            return View(personViewModel);
         }
 
         // GET: Vartotojai/Create

@@ -19,6 +19,9 @@ namespace BaLogisticsSystem.DAL
 
         public DbSet<UserProfileEntity> UserProfiles { get; set; }
         public DbSet<PersonEntity> Persons { get; set; }
+        public DbSet<OrganizationEntity> Organizations { get; set; }
+        public DbSet<ServiceEntity> Services { get; set; }
+        public DbSet<ServiceItemEntity> ServiceItems { get; set; }
 
         public override int SaveChanges()
         {

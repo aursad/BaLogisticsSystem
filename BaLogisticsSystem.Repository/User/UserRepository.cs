@@ -3,7 +3,7 @@ using System.Linq;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository.Common;
 
-namespace BaLogisticsSystem.Repository
+namespace BaLogisticsSystem.Repository.User
 {
     public class UserRepository : GenericRepository<UserProfileEntity>, IUserRepository
     {

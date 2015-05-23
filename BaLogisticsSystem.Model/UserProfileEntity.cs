@@ -8,7 +8,6 @@ namespace BaLogisticsSystem.Models
     public class UserProfileEntity : BaseEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
     }

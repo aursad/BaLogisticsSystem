@@ -1,7 +1,7 @@
 ﻿using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository.Common;
 
-namespace BaLogisticsSystem.Repository
+namespace BaLogisticsSystem.Repository.User
 {
     public interface IUserRepository : IGenericRepository<UserProfileEntity>
     {
