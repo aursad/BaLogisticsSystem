@@ -10,5 +10,6 @@ namespace BaLogisticsSystem.Service.Persons
         PersonEntity GetSingle(string email);
         IEnumerable<PersonEntity> GetList();
         void CreatePerson(PersonEntity personEntity);
+        bool BlockUser(Guid idPerson);
     }
 }

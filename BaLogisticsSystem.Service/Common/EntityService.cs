@@ -31,7 +31,7 @@ namespace BaLogisticsSystem.Service.Common
         public virtual void Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
-            _repository.Edit(entity);
+            _repository.Update(entity);
             _unitOfWork.Commit();
         }
 

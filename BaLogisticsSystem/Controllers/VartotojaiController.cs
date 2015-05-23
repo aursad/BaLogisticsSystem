@@ -66,6 +66,8 @@ namespace BaLogisticsSystem.Controllers
                     };
 
                     _personsService.CreatePerson(personEntity);
+
+                    ViewBag.RegisteredUser = true;
                     return RedirectToAction("Index");
                 }
             }
@@ -94,9 +96,39 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // GET: Vartotojai/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             return View();
+        }
+
+        public ActionResult BlockUser(Guid id)
+        {
+            if (id != Guid.Empty)
+            {
+                var entity = _personsService.GetSingle(id);
+
+                if (entity != null)
+                {
+                    return View(entity);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult BlockUser(Guid id, FormCollection collection)
+        {
+            try
+            {
+                _personsService.BlockUser(id);
+
+                return RedirectToAction("Details", new { id = id });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Vartotojai/Delete/5

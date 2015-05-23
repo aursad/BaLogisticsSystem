@@ -4,32 +4,90 @@
     ViewBag.Title = Model.UserName;
 }
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
         <div class="page-header">
             <h1>Informacija apie <small>@Model.Email</small></h1>
         </div>
     </div>
-    <div class="col-md-2">
-        <button type="button" class="btn btn-primary  pull-right">Redaguoti vartotoją</button>
+    <div class="col-md-4">
+        <div class="btn-group-vertical pull-right">
+            @using (Html.BeginForm("BlockUser", "Vartotojai", new { id = Model.IdPerson }, FormMethod.Post))
+            {
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Redaguoti vartotoją</button>
+                if (Model.IsBlocked)
+                {
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Atblokuoti vartotoją</button>
+                }
+                else
+                {
+                    @Html.ActionLink("Blokuoti vartotoją", "BlockUser", new { id = Model.IdPerson }, new { @class = "btn btn-primary", @type = "button" })
+                }
+            }
+        </div>
     </div>
 </div>
-
+@if (Model.IsBlocked)
+{
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+        <span class="sr-only">Blokuotas!</span>
+        <b>Vartotojas blokuotas!</b>
+    </div>
+}
 <dl class="dl-horizontal">
     <dt>@Html.DisplayNameFor(model => model.Name)</dt>
     <dd>@Html.DisplayFor(model => model.Name)</dd>
 
     <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
     <dd>@Html.DisplayFor(model => model.LastName)</dd>
-    
+
     <dt>@Html.DisplayNameFor(model => model.UserName)</dt>
     <dd>@Html.DisplayFor(model => model.UserName)</dd>
-    
+
     <dt>@Html.DisplayNameFor(model => model.Email)</dt>
     <dd>@Html.DisplayFor(model => model.Email)</dd>
-    
+
     <dt>@Html.DisplayNameFor(model => model.MobilePhone)</dt>
     <dd>@Html.DisplayFor(model => model.MobilePhone)</dd>
-    
+
     <dt>@Html.DisplayNameFor(model => model.IdOrganization)</dt>
     <dd>@Html.DisplayFor(model => model.IdOrganization)</dd>
 </dl>
+<br />
+<h1>Transakcijų vykdymo istorija</h1>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Vartotojo vardas</th>
+                <th>E. paštas</th>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Veiksmai</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    ą
+                </td>
+                <td>
+                    fsdf
+                </td>
+                <td>
+                    er
+                </td>
+                <td>
+                    er
+                </td>
+                <td>
+                    as
+                </td>
+                <td width="10%">
+                    bb
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -20,7 +20,8 @@ namespace BaLogisticsSystem.Repository
 
         public PersonEntity GetSingle(string email)
         {
-            return Dbset.FirstOrDefault(x => email != null && String.Equals(x.Email, email, StringComparison.CurrentCultureIgnoreCase));
+            var personEntity = Dbset.FirstOrDefault(q => q.UserName.ToLower().Equals(email.ToLower()));
+            return personEntity;
         }
     }
 }

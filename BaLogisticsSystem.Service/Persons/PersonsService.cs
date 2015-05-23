@@ -43,6 +43,24 @@ namespace BaLogisticsSystem.Service.Persons
             personEntity.UserName = personEntity.Email;
 
             _personsRepository.Add(personEntity);
+            _personsRepository.Save();
+        }
+
+        public bool BlockUser(Guid idPerson)
+        {
+            var entity = _personsRepository.GetSingle(idPerson);
+            if (entity != null)
+            {
+                entity.IsBlocked = !entity.IsBlocked;
+            }
+            else
+            {
+                throw new Exception(string.Format("Person with id: {0} not exist!", idPerson));
+            }
+
+            _personsRepository.Update(entity);
+            _personsRepository.Save();
+            return entity.IsBlocked;
         }
     }
 }

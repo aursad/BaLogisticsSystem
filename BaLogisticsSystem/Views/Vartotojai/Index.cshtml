@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "Vartotojai";
 }
+@if (ViewBag.RegisteredUser != null && ViewBag.RegisteredUser == true)
+{
+    <div class="alert alert-success">
+        <strong>Užregistruota!</strong> Vartotojas sėkmingai užregistruotas.
+    </div>
+}
 
 <div class="row">
     <div class="col-md-10">

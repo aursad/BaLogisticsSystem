@@ -54,7 +54,7 @@ namespace BaLogisticsSystem
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
-        protected void Application_Error(Object sender, EventArgs e)
+        protected void Application_Error(object sender, EventArgs e)
         {
             var ex = Server.GetLastError();
             var httpException = ex as HttpException;
@@ -79,7 +79,7 @@ namespace BaLogisticsSystem
         {
             if (!WebSecurity.Initialized)
             {
-                WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", true);
             }
         }
     }

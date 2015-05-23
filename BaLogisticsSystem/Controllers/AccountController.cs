@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Transactions;
 using System.Web.Mvc;
 using System.Web.Security;
 using BaLogisticsSystem.DAL;
 using BaLogisticsSystem.Models;
+using BaLogisticsSystem.Service.Persons;
 using BaLogisticsSystem.Service.User;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
@@ -16,10 +18,12 @@ namespace BaLogisticsSystem.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IPersonsService _personsService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, IPersonsService personsService)
         {
             _userService = userService;
+            _personsService = personsService;
         }
         //
         // GET: /Account/Login
@@ -39,13 +43,20 @@ namespace BaLogisticsSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, model.RememberMe))
+            var personModel = _personsService.GetSingle(model.UserName);
+            if (personModel != null && !personModel.IsBlocked)
             {
-                return RedirectToLocal(returnUrl);
+                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, model.RememberMe))
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+                ModelState.AddModelError("", "Neteisingai įvestas slaptažodis arba vartotojo vardas.");
             }
-
+            else
+            {
+                ModelState.AddModelError("", "Vartotojas blokuotas sistemoje!");
+            }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 
@@ -82,9 +93,14 @@ namespace BaLogisticsSystem.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    var personModel = _personsService.GetSingle(model.UserName);
+                    if (personModel != null)
+                    {
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                        WebSecurity.Login(model.UserName, model.Password);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    ModelState.AddModelError("", "Vartotojo sukurti negalima. El. paštas nėra registruotas sistemoje!");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -131,9 +147,9 @@ namespace BaLogisticsSystem.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Jūsų slaptažodis buvo pakeistas."
+                : message == ManageMessageId.SetPasswordSuccess ? "Jūsų slaptažodis buvo pakeistas."
+                : message == ManageMessageId.RemoveLoginSuccess ? "Pašalintas išorinis prisijungimo būdas."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -174,7 +190,7 @@ namespace BaLogisticsSystem.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "Neteisingas dabartinis slaptažodis arba neteisingas naujas.");
                     }
                 }
             }
@@ -197,7 +213,7 @@ namespace BaLogisticsSystem.Controllers
                     }
                     catch (Exception)
                     {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                        ModelState.AddModelError("", string.Format("Nepavyksta sukurti vartotojo. Vartotojo vardas \"{0}\" jau egzistuoja.", User.Identity.Name));
                     }
                 }
             }
@@ -229,7 +245,7 @@ namespace BaLogisticsSystem.Controllers
                 return RedirectToAction("ExternalLoginFailure");
             }
 
-            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, false))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -280,13 +296,13 @@ namespace BaLogisticsSystem.Controllers
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
-                        OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
+                        OAuthWebSecurity.Login(provider, providerUserId, false);
 
                         return RedirectToLocal(returnUrl);
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "Vartotojo vardas jau egzistuoja. Prašome įveski kitą.");
                     }
                 }
             }

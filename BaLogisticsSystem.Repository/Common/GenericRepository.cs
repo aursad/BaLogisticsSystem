@@ -40,7 +40,7 @@ namespace BaLogisticsSystem.Repository.Common
             return Dbset.Remove(entity);
         }
 
-        public virtual void Edit(T entity)
+        public virtual void Update(T entity)
         {
             Entities.Entry(entity).State = EntityState.Modified;
         }

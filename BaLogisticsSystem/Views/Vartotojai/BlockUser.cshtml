@@ -1,0 +1,25 @@
+﻿@model BaLogisticsSystem.Models.PersonEntity
+
+@{
+    ViewBag.Title = "Block user: " + Model.Name + ' ' + Model.LastName;
+}
+
+@using (Html.BeginForm("BlockUser", "Vartotojai", new { id = Model.IdPerson }, FormMethod.Post))
+{
+    <div style="border-color: red; border-style: solid; border-width: 3px;">
+        <div style="left: 15px;">
+            <div class="page-header">
+                <h1>
+                    Blokuoti vartotoją: <i>@(Model.Name + ' ' + Model.LastName)</i> <small>(@Model.Email)</small>
+                </h1>
+            </div>
+            <div>
+                <h2>Ar tikrai norite blokuoti šį vartotoją?</h2>
+            </div>
+            <div>
+                @Html.ActionLink("Atšaukti", "Details", new { id = Model.IdPerson }, new { @class = "btn btn-danger btn-lg", @type = "button" })
+                <button type="submit" class="btn btn-success btn-lg pull-right">Blokuoti vartotoją</button>
+            </div>
+        </div>
+    </div>
+}

@@ -307,6 +307,7 @@
     <Content Include="Views\Vartotojai\Create.cshtml" />
     <Content Include="Views\Vartotojai\Edit.cshtml" />
     <Content Include="Views\Vartotojai\Delete.cshtml" />
+    <Content Include="Views\Vartotojai\BlockUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
