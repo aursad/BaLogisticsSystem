@@ -7,12 +7,18 @@ namespace BaLogisticsSystem.DAL
 {
     public class DbInitializer : DropCreateDatabaseIfModelChanges<BaLogisticsSystemContext>
     {
-        readonly Guid _defaultOrganizationGuid = Guid.NewGuid();
+        #region private entities guids
+
+        private readonly Guid _defaultOrganizationGuid = Guid.NewGuid();
         private readonly Guid _defaultPerson = Guid.NewGuid();
         private readonly Guid _defaultService = Guid.NewGuid();
+        private readonly Guid _defaultShipment = Guid.NewGuid();
+
+        #endregion
 
         protected override void Seed(BaLogisticsSystemContext context)
         {
+            #region fill DB context
             foreach (var organization in DefaultOrganizations())
             {
                 context.Organizations.Add(organization);
@@ -25,16 +31,21 @@ namespace BaLogisticsSystem.DAL
             {
                 context.Services.Add(service);
             }
-            foreach (var serviceItem in DefaultServiceItems())
+            foreach (var shipment in DefaultShipments())
             {
-                context.ServiceItems.Add(serviceItem);
+                context.Shipments.Add(shipment);
             }
-
+            foreach (var transaction in DefaultTransactions())
+            {
+                context.Transactions.Add(transaction);
+            }
+            #endregion
 
             base.Seed(context);
         }
 
-        // -- Fill test data
+        #region -- Fill test data
+
         private IEnumerable<OrganizationEntity> DefaultOrganizations()
         {
             var defaultOrganizations = new List<OrganizationEntity>
@@ -133,33 +144,37 @@ namespace BaLogisticsSystem.DAL
             };
             return defaultServices;
         }
-        private IEnumerable<ServiceItemEntity> DefaultServiceItems()
+        private IEnumerable<ShipmentEntity> DefaultShipments()
         {
-            var defaultServices = new List<ServiceItemEntity>
+            var defaultServices = new List<ShipmentEntity>
             {
-                new ServiceItemEntity
+                new ShipmentEntity
                 {
                     Id = 1,
-                    IdServiceItem = Guid.NewGuid(),
+                    IdShipment = _defaultShipment,
                     IdService = _defaultService,
                     Title = "AK000001",
+                    Longitude = 54.6991309,
+                    Latitude = 25.285686,
                     IdPerson = _defaultPerson,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
                 },
-                new ServiceItemEntity
+                new ShipmentEntity
                 {
                     Id = 2,
-                    IdServiceItem = Guid.NewGuid(),
+                    IdShipment = Guid.NewGuid(),
                     IdService = _defaultService,
                     Title = "AK000002",
+                    Longitude = 54.6891603,
+                    Latitude = 25.2826819,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
                 },
-                new ServiceItemEntity
+                new ShipmentEntity
                 {
                     Id = 3,
-                    IdServiceItem = Guid.NewGuid(),
+                    IdShipment = Guid.NewGuid(),
                     IdService = _defaultService,
                     Title = "AK000003",
                     CreatedDate = DateTime.Now,
@@ -168,5 +183,34 @@ namespace BaLogisticsSystem.DAL
             };
             return defaultServices;
         }
+        private IEnumerable<TransactionEntity> DefaultTransactions()
+        {
+            var defaultServices = new List<TransactionEntity>
+            {
+                new TransactionEntity
+                {
+                    Id = 1,
+                    IdTransaction = Guid.NewGuid(),
+                    IdShipment = _defaultService,
+                    Longitude = 54.9991309,
+                    Latitude = 25.685686,
+                    IdPerson = _defaultPerson,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now.AddMinutes(3),
+                },
+                new TransactionEntity
+                {
+                    Id = 2,
+                    IdTransaction = Guid.NewGuid(),
+                    IdShipment = _defaultService,
+                    Longitude = 54.6891603,
+                    Latitude = 25.2826819,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now.AddMinutes(5),
+                }
+            };
+            return defaultServices;
+        }
+        #endregion
     }
 }

@@ -54,6 +54,8 @@
     <Compile Include="Person\IPersonsRepository.cs" />
     <Compile Include="Service\IServiceRepository.cs" />
     <Compile Include="Service\ServiceRepository.cs" />
+    <Compile Include="Shipment\IShipmentRepository.cs" />
+    <Compile Include="Shipment\ShipmentRepository.cs" />
     <Compile Include="User\IUserRepository.cs" />
     <Compile Include="Organization\OrganizationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

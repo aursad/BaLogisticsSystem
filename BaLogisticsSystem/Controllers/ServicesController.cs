@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -7,6 +8,7 @@ using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Service.Organizations;
 using BaLogisticsSystem.Service.Persons;
 using BaLogisticsSystem.Service.Service;
+using BaLogisticsSystem.Service.Shipment;
 
 namespace BaLogisticsSystem.Controllers
 {
@@ -14,13 +16,13 @@ namespace BaLogisticsSystem.Controllers
     {
         private readonly IServiceService _serviceService;
         private readonly IOrganizationService _organizationService;
-        private readonly IPersonsService _personsService;
+        private readonly IShipmentService _shipmentService;
 
-        public ServicesController(IServiceService serviceService, IOrganizationService organizationService, IPersonsService personsService)
+        public ServicesController(IServiceService serviceService, IOrganizationService organizationService, IShipmentService shipmentService)
         {
             _serviceService = serviceService;
             _organizationService = organizationService;
-            _personsService = personsService;
+            _shipmentService = shipmentService;
         }
         // GET: Services
         public ActionResult Index()
@@ -58,7 +60,8 @@ namespace BaLogisticsSystem.Controllers
                 IdOrganization = serviceEntity.IdOrganization,
                 Title = serviceEntity.Title,
                 IdService = serviceEntity.IdService,
-                Organization = SetOrganization(serviceEntity.IdOrganization)
+                Organization = SetOrganization(serviceEntity.IdOrganization),
+                Shipments = GetAllShipments(serviceEntity.IdService)
             };
 
             return View(serviceViewModel);
@@ -152,6 +155,24 @@ namespace BaLogisticsSystem.Controllers
                     Address = entity.Address,
                     Name = entity.Name
                 };
+            }
+            return null;
+        }
+        private IEnumerable<ShipmentViewModel> GetAllShipments(Guid idService)
+        {
+            var entities = _shipmentService.GetServicesByService(idService);
+            if (entities != null)
+            {
+                var shipmenViewModels = entities.Select(x => new ShipmentViewModel
+                {
+                    IdService = x.IdService,
+                    Title = x.Title,
+                    IdShipment = x.IdShipment,
+                    Status = x.Status,
+                    Created = x.CreatedDate,
+                    LastUpdate = x.UpdatedDate
+                });
+                return shipmenViewModels;
             }
             return null;
         }

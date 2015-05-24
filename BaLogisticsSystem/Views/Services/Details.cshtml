@@ -37,23 +37,34 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Siuntos numeris</th>
-                        <th>Pavadinimas</th>
-                        <th>Būsena</th>
+                        <th>Paslaugos pavadinimas</th>
+                        <th>Statusas</th>
+                        <th>Sukurta</th>
+                        <th>Atnaujinta</th>
                         <th>Veiksmai</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td width="10%">
-                            @*@Html.ActionLink("Peržiūrėti", "Details", "Vartotojai", new { id = item.IdPerson }, null)*@
-                        </td>
-                    </tr>
+                    @foreach (var item in Model.Shipments)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUpdate)
+                            </td>
+                            <td width="10%">
+                                @Html.ActionLink("Peržiūrėti", "Details", "Shipment", new { id = item.IdShipment }, null)
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

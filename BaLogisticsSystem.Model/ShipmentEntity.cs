@@ -5,14 +5,14 @@ using BaLogisticsSystem.Models.Common;
 
 namespace BaLogisticsSystem.Models
 {
-    [Table("ServiceItems")]
-    public class ServiceItemEntity : AuditableEntity<int>
+    [Table("Shipments")]
+    public class ShipmentEntity : AuditableEntity<int>
     {
         [Key]
-        public Guid IdServiceItem { get; set; }
+        public Guid IdShipment { get; set; }
         public string Title { get; set; }
-        public bool Latitude { get; set; }
-        public bool Longitude { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public int Status { get; set; }

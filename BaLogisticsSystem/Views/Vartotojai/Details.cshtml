@@ -50,8 +50,12 @@
     <dt>@Html.DisplayNameFor(model => model.MobilePhone)</dt>
     <dd>@Html.DisplayFor(model => model.MobilePhone)</dd>
 
-    <dt>@Html.DisplayNameFor(model => model.Organization)</dt>
-    <dd>
-        @Html.ActionLink(Model.Organization.Name, "Details", "Organization", new { id = Model.Organization.IdOrganization }, null)
-    </dd>
+    @if (Model.Organization != null)
+    {
+        <dt>@Html.DisplayNameFor(model => model.Organization)</dt>
+        <dd>
+            @Html.ActionLink(Model.Organization.Name, "Details", "Organization", new { id = Model.Organization.IdOrganization }, null)
+        </dd>
+    }
+
 </dl>

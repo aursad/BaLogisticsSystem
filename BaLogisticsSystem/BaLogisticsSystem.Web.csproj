@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ShipmentController.cs" />
     <Compile Include="Controllers\VartotojaiController.cs" />
     <Compile Include="DAL\DBInitializer.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="DAL\BaLogisticsSystemContext.cs" />
     <Compile Include="Models\ServiceViewModel.cs" />
+    <Compile Include="Models\ShipmentViewModel.cs" />
     <Compile Include="Modules\EFModule.cs" />
     <Compile Include="Modules\RepositoryModule.cs" />
     <Compile Include="Modules\ServiceModule.cs" />
@@ -320,6 +322,11 @@
     <Content Include="Views\Services\Create.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Shipment\Index.cshtml" />
+    <Content Include="Views\Shipment\Details.cshtml" />
+    <Content Include="Views\Shipment\Create.cshtml" />
+    <Content Include="Views\Shipment\Edit.cshtml" />
+    <Content Include="Views\Shipment\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BaLogisticsSystem.Models
@@ -13,5 +14,6 @@ namespace BaLogisticsSystem.Models
         [Display(Name = "Organizacija")]
         public Guid IdOrganization { get; set; }
         public OrganizationViewModel Organization { get; set; }
+        public IEnumerable<ShipmentViewModel> Shipments { get; set; } 
     }
 }
