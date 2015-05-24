@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Repository.Common;
-using BaLogisticsSystem.Repository.Service;
 using BaLogisticsSystem.Repository.Shipment;
 using BaLogisticsSystem.Service.Common;
 

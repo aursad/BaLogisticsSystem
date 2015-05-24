@@ -4,17 +4,21 @@ using System.Net;
 using System.Web.Http;
 using System.Web.Mvc;
 using BaLogisticsSystem.Models;
+using BaLogisticsSystem.Repository.Transaction;
 using BaLogisticsSystem.Service.Shipment;
+using BaLogisticsSystem.Service.Transaction;
 
 namespace BaLogisticsSystem.Controllers
 {
     public class ShipmentController : Controller
     {
         private readonly IShipmentService _shipmentService;
+        private readonly ITransactionService _transactionService;
 
-        public ShipmentController(IShipmentService shipmentService)
+        public ShipmentController(IShipmentService shipmentService, ITransactionService transactionService)
         {
             _shipmentService = shipmentService;
+            _transactionService = transactionService;
         }
         // GET: Shipment
         public ActionResult Index()
@@ -62,7 +66,8 @@ namespace BaLogisticsSystem.Controllers
                 Latitude = shipmentEntity.Latitude,
                 Longitude = shipmentEntity.Longitude,
                 StartTime = shipmentEntity.StartTime,
-                EndTime = shipmentEntity.StartTime
+                EndTime = shipmentEntity.StartTime,
+                Transactions = _transactionService.GetList(shipmentEntity.IdShipment)
             };
 
             return View(serviceViewModel);

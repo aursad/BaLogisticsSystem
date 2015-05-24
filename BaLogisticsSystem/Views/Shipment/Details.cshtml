@@ -39,7 +39,7 @@
     <div class="col-md-6">
         <dl class="dl-horizontal">
             <dt>Siuntos kodas</dt>
-            <dd style="color:red">@Html.DisplayFor(model => model.IdShipment)</dd>
+            <dd style="color: red">@Html.DisplayFor(model => model.IdShipment)</dd>
 
             <dt>@Html.DisplayNameFor(model => model.Title)</dt>
             <dd>@Html.DisplayFor(model => model.Title)</dd>
@@ -67,7 +67,52 @@
         </dl>
     </div>
     <div class="col-md-6">
-        <iframe frameborder="0" style="border:0" height="440" width="600"
+        <iframe frameborder="0" style="border: 0" height="440" width="600"
                 src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCqUDmEqidBzU8TXnFtA-qUD4pftESr4BE&center=@(Model.Longitude.ToString().Replace(",", ".")),@(Model.Latitude.ToString().Replace(",", "."))&zoom=15"></iframe>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Transakcijų istorija</h1>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Kodas</th>
+                        <th>Statusas</th>
+                        <th>@Html.DisplayNameFor(model => model.Longitude)</th>
+                        <th>@Html.DisplayNameFor(model => model.Latitude)</th>
+                        <th>Išsaugota</th>
+                        <th>Atsakingas asmuo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Transactions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdTransaction)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Longitude)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Latitude)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td> 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdPerson)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

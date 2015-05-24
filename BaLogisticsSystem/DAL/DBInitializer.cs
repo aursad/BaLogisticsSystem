@@ -191,7 +191,7 @@ namespace BaLogisticsSystem.DAL
                 {
                     Id = 1,
                     IdTransaction = Guid.NewGuid(),
-                    IdShipment = _defaultService,
+                    IdShipment = _defaultShipment,
                     Longitude = 54.9991309,
                     Latitude = 25.685686,
                     IdPerson = _defaultPerson,
@@ -202,7 +202,7 @@ namespace BaLogisticsSystem.DAL
                 {
                     Id = 2,
                     IdTransaction = Guid.NewGuid(),
-                    IdShipment = _defaultService,
+                    IdShipment = _defaultShipment,
                     Longitude = 54.6891603,
                     Latitude = 25.2826819,
                     CreatedDate = DateTime.Now,

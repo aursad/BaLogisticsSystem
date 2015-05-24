@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace BaLogisticsSystem.Models
 {
@@ -19,5 +19,7 @@ namespace BaLogisticsSystem.Models
 
         public DateTime Created { get; set; }
         public DateTime LastUpdate { get; set; }
+
+        public IEnumerable<TransactionEntity> Transactions { get; set; } 
     }
 }
