@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BaLogisticsSystem.Models;
-using BaLogisticsSystem.Repository;
 using BaLogisticsSystem.Repository.Common;
 using BaLogisticsSystem.Repository.Organization;
 using BaLogisticsSystem.Service.Common;
@@ -37,7 +36,6 @@ namespace BaLogisticsSystem.Service.Organizations
             personEntity.UpdatedDate = DateTime.Now;
 
             _organizationRepository.Add(personEntity);
-            _organizationRepository.Save();
         }
     }
 }

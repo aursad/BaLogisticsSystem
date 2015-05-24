@@ -49,7 +49,7 @@ namespace BaLogisticsSystem.Controllers
                 Birthday = personModel.Birthday,
                 Email = personModel.Email,
                 LastName = personModel.LastName,
-                MobilePhone = personModel.LastName,
+                MobilePhone = personModel.MobilePhone,
                 UserName = personModel.UserName,
                 IsBlocked = personModel.IsBlocked
             };

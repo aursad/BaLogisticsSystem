@@ -29,15 +29,15 @@ namespace BaLogisticsSystem.Service.Service
             return _serviceRepository.GetAll();
         }
 
-        public void CreateService(ServiceEntity entity)
+        public ServiceEntity CreateService(ServiceEntity entity)
         {
-            entity.IdOrganization = Guid.NewGuid();
             entity.IdService = Guid.NewGuid();
             entity.CreatedDate = DateTime.Now;
             entity.UpdatedDate = DateTime.Now;
 
             _serviceRepository.Add(entity);
-            _serviceRepository.Save();
+
+            return entity;
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Web.Http;
 using System.Web.Mvc;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Service.Organizations;
@@ -32,7 +33,6 @@ namespace BaLogisticsSystem.Controllers
                     IdService = x.IdService,
                     Title = x.Title,
                     IdOrganization = x.IdOrganization,
-                    //Organization = SetOrganization(x.IdOrganization)
                 });
                 return View(serviceViewModels);
             }
@@ -71,19 +71,30 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // POST: Services/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Create([FromBody]ServiceViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var serviceEntity = new ServiceEntity
+                    {
+                        Title = model.Title,
+                        IdOrganization = model.IdOrganization,
+                    };
 
-                return RedirectToAction("Index");
+                    var createdEntity = _serviceService.CreateService(serviceEntity);
+
+                    ViewBag.RegisteredUser = true;
+                    return RedirectToAction("Details", new { id = createdEntity.IdService });
+                }
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Nepavyko sukurti vartotojo!");
             }
+            return View(model);
         }
 
         // GET: Services/Edit/5
@@ -93,7 +104,7 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // POST: Services/Edit/5
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -115,7 +126,7 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // POST: Services/Delete/5
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

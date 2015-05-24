@@ -32,21 +32,23 @@ namespace BaLogisticsSystem.Repository.Common
 
         public virtual T Add(T entity)
         {
-            return Dbset.Add(entity);
+            var entityResponse = Dbset.Add(entity);
+            Entities.SaveChanges();
+
+            return entityResponse;
         }
 
         public virtual T Delete(T entity)
         {
-            return Dbset.Remove(entity);
+            var entityResponse = Dbset.Remove(entity);
+            Entities.SaveChanges();
+
+            return entityResponse;
         }
 
         public virtual void Update(T entity)
         {
             Entities.Entry(entity).State = EntityState.Modified;
-        }
-
-        public virtual void Save()
-        {
             Entities.SaveChanges();
         }
     }

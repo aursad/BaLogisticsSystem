@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BaLogisticsSystem.Models;
-using BaLogisticsSystem.Repository;
 using BaLogisticsSystem.Repository.Common;
 using BaLogisticsSystem.Repository.Person;
 using BaLogisticsSystem.Service.Common;
@@ -44,7 +43,6 @@ namespace BaLogisticsSystem.Service.Persons
             personEntity.UserName = personEntity.Email;
 
             _personsRepository.Add(personEntity);
-            _personsRepository.Save();
         }
 
         public bool BlockUser(Guid idPerson)
@@ -60,7 +58,6 @@ namespace BaLogisticsSystem.Service.Persons
             }
 
             _personsRepository.Update(entity);
-            _personsRepository.Save();
             return entity.IsBlocked;
         }
 

@@ -8,7 +8,7 @@ namespace BaLogisticsSystem.Service.Service
     {
         ServiceEntity GetSingle(Guid idService);
         IEnumerable<ServiceEntity> GetList();
-        void CreateService(ServiceEntity entity);
+        ServiceEntity CreateService(ServiceEntity entity);
 
         IEnumerable<ServiceEntity> GetServicesByOrganization(Guid idOrganization);
     }

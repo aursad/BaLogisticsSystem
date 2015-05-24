@@ -12,6 +12,5 @@ namespace BaLogisticsSystem.Repository.Common
         T Add(T entity);
         T Delete(T entity);
         void Update(T entity);
-        void Save();
     }
 }
