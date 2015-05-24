@@ -8,7 +8,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="NFC Logistika"/>
+        </StackPanel>
+        <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid x:Name="ContentPanel" Margin="12,0,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="\Assets\NFC-device.png" Grid.Row="1"/>
+                <TextBlock x:Name="AppText" Grid.Row="0" />
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
