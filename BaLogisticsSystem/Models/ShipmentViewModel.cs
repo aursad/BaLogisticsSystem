@@ -17,9 +17,7 @@ namespace BaLogisticsSystem.Models
         public Guid? IdPerson { get; set; }
         public Guid IdService { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime Created { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime LastUpdate { get; set; }
     }
 }

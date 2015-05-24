@@ -49,6 +49,7 @@ namespace BaLogisticsSystem.Repository.Common
         public virtual void Update(T entity)
         {
             Entities.Entry(entity).State = EntityState.Modified;
+
             Entities.SaveChanges();
         }
     }

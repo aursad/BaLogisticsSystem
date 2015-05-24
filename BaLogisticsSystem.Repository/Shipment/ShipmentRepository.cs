@@ -14,9 +14,9 @@ namespace BaLogisticsSystem.Repository.Shipment
         {
         }
 
-        public ShipmentEntity GetSingle(Guid idService)
+        public ShipmentEntity GetSingle(Guid idShipment)
         {
-            return Dbset.FirstOrDefault(x => x.IdService == idService);
+            return Dbset.FirstOrDefault(x => x.IdShipment == idShipment);
         }
 
         public IEnumerable<ShipmentEntity> GetServicesByService(Guid idService)

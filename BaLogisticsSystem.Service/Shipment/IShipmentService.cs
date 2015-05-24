@@ -9,7 +9,7 @@ namespace BaLogisticsSystem.Service.Shipment
         ShipmentEntity GetSingle(Guid isShipment);
         IEnumerable<ShipmentEntity> GetList();
         ShipmentEntity CreateShipment(ShipmentEntity entity);
-
         IEnumerable<ShipmentEntity> GetServicesByService(Guid idService);
+        void Update(ShipmentEntity shipmentEntity);
     }
 }

@@ -45,5 +45,11 @@ namespace BaLogisticsSystem.Service.Shipment
         {
             return _shipmentRepository.GetServicesByService(idService);
         }
+
+        public override void Update(ShipmentEntity shipmentEntity)
+        {
+            shipmentEntity.UpdatedDate = DateTime.Now;
+            _shipmentRepository.Update(shipmentEntity);
+        }
     }
 }

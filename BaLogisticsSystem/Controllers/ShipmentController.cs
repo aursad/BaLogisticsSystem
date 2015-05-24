@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
+using System.Web.Http;
 using System.Web.Mvc;
 using BaLogisticsSystem.Models;
 using BaLogisticsSystem.Service.Shipment;
@@ -34,10 +37,35 @@ namespace BaLogisticsSystem.Controllers
             return View();
         }
 
-        // GET: Shipment/Details/5
-        public ActionResult Details(int id)
+        // GET: Services/Details/170e4cee-5335-4edf-aa33-663127c93200
+        public ActionResult Details(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var shipmentEntity = _shipmentService.GetSingle((Guid)id);
+            if (shipmentEntity == null)
+            {
+                return HttpNotFound();
+            }
+
+            var serviceViewModel = new ShipmentViewModel
+            {
+                IdService = shipmentEntity.IdService,
+                Title = shipmentEntity.Title,
+                IdShipment = shipmentEntity.IdShipment,
+                Status = shipmentEntity.Status,
+                Created = shipmentEntity.CreatedDate,
+                LastUpdate = shipmentEntity.UpdatedDate,
+                Latitude = shipmentEntity.Latitude,
+                Longitude = shipmentEntity.Longitude,
+                StartTime = shipmentEntity.StartTime,
+                EndTime = shipmentEntity.StartTime
+            };
+
+            return View(serviceViewModel);
         }
 
         // GET: Shipment/Create
@@ -47,41 +75,78 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // POST: Shipment/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Create([FromBody]ShipmentViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var shipmentEntity = new ShipmentEntity
+                    {
+                        Title = model.Title,
+                        IdService = model.IdService
+                    };
 
-                return RedirectToAction("Index");
+                    var createdEntity = _shipmentService.CreateShipment(shipmentEntity);
+
+                    ViewBag.RegisteredUser = true;
+                    return RedirectToAction("Details", new { id = createdEntity.IdShipment });
+                }
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Nepavyko sukurti vartotojo!");
             }
+            return View(model);
         }
 
         // GET: Shipment/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var shipmentEntity = _shipmentService.GetSingle(id);
+
+            var serviceViewModel = new ShipmentViewModel
+            {
+                IdService = shipmentEntity.IdService,
+                Title = shipmentEntity.Title,
+                IdShipment = shipmentEntity.IdShipment,
+                Status = shipmentEntity.Status,
+                Created = shipmentEntity.CreatedDate,
+                LastUpdate = shipmentEntity.UpdatedDate,
+                Latitude = shipmentEntity.Latitude,
+                Longitude = shipmentEntity.Longitude,
+                StartTime = shipmentEntity.StartTime,
+                EndTime = shipmentEntity.StartTime
+            };
+
+            return View(serviceViewModel);
         }
 
         // POST: Shipment/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Edit(Guid id, [FromBody]ShipmentViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var shipmentEntity = _shipmentService.GetSingle(id);
+                    shipmentEntity.Title = model.Title;
+                    shipmentEntity.IdService = model.IdService;
+                    shipmentEntity.Latitude = model.Latitude;
+                    shipmentEntity.Longitude = model.Longitude;
 
-                return RedirectToAction("Index");
+                    _shipmentService.Update(shipmentEntity);
+
+                    return RedirectToAction("Details", new { id = shipmentEntity.IdShipment });
+                }
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Nepavyko sukurti vartotojo!");
             }
+            return View(model);
         }
 
         // GET: Shipment/Delete/5
@@ -91,7 +156,7 @@ namespace BaLogisticsSystem.Controllers
         }
 
         // POST: Shipment/Delete/5
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
