@@ -14,19 +14,28 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="NFC Logistika"/>
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock x:Uid="Header" Text="NFC Logistika" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock x:Uid="Prisijungimas" Text="Prisijungimas" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
-        <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <Grid x:Name="ContentPanel" Margin="12,0,12,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Source="\Assets\NFC-device.png" Grid.Row="1"/>
-                <TextBlock x:Name="AppText" Grid.Row="0" />
-            </Grid>
-        </ScrollViewer>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <TextBox PlaceholderText="Vartotojo vardas" />
+                <PasswordBox PlaceholderText="Slaptažodis"/>
+
+                <Button Content="Prisijungti" Margin="0,0,-0.333,0" Width="342" Click="ButtonBase_OnClick"/>
+            </StackPanel>
+        </Grid>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Setting" Label="Nustatymai" />
+                <AppBarButton Icon="Important" Label="Apie"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NFCLogistikaMobile
+namespace NFCLogistikaMobile.NfcCommon
 {
     public class NdefRecord
     {

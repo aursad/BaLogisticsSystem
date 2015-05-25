@@ -83,12 +83,25 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="NfcHubPage.xaml.cs">
+      <DependentUpon>NfcHubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NfcReaderPage.xaml.cs">
+      <DependentUpon>NfcReaderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NdefRecord.cs" />
-    <Compile Include="NdefRecordTypeDefinitions.cs" />
-    <Compile Include="NdefRecordUtility.cs" />
+    <Compile Include="NfcCommon\NdefRecord.cs" />
+    <Compile Include="NfcCommon\NdefRecordTypeDefinitions.cs" />
+    <Compile Include="NfcCommon\NdefRecordUtility.cs" />
+    <Compile Include="NfcTagDetailsPage.xaml.cs">
+      <DependentUpon>NfcTagDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +120,21 @@
     <Content Include="StoreManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="NfcHubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NfcReaderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NfcTagDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

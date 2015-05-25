@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage.Streams;
 
-namespace NFCLogistikaMobile
+namespace NFCLogistikaMobile.NfcCommon
 {
     /// <summary>
     /// This class provides the utility methods for handling NDEF record data.
